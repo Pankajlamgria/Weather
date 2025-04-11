@@ -12,7 +12,7 @@ function Chart() {
         options={contextcontent.chartInfo.options} 
         series={contextcontent.chartInfo.series} 
         type="line" 
-        height={300}
+        height={280}
       />
     </div>
   );
