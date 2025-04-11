@@ -4,7 +4,6 @@ import Chart from "./content/Chart";
 import CurrentComponent from "./content/CurrentComponent";
 import Details from "./content/Details";
 import Forecast from "./content/Forecast";
-import WeatherState from "./context/WeatherState";
 import weathercontext from "./context/Weathercontext";
 
 function App() {
@@ -14,7 +13,7 @@ function App() {
     setLocation(e.target.value);
   }
   const handleSearch=(e)=>{
-    if(e.key=="Enter"){
+    if(e.key==="Enter"){
       contextcontent.getCurrentWeather(location);
       contextcontent.getForecast(location,3);
     }

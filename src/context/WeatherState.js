@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import weathercontext from "./Weathercontext";
 const WeatherState = (props) => {
-  const [api, setapi] = useState("35fa93c2767244fc9dd132255252401");
+  const [api, setapi] = useState(process.env.REACT_APP_API_KEY);
   const [currentWeather, setCurrentWeather] = useState({});
   const [forecast,setForecast]=useState({});
   const [flag, setflag] = useState(false);
@@ -91,7 +91,6 @@ const WeatherState = (props) => {
       );
       const data = await response.json();
       
-      console.log(data);
       if(data.error===undefined){
         setCurrentWeather(data);
         let date=new Date(data.location.localtime.split(' ')[0]);
