@@ -11,9 +11,9 @@ const CurrentComponent = () => {
   return (
     <div className="bg-neutral-900 rounded-2xl h-[41%] w-[100%] p-6 px-10 flex">
       <div className="leftBlock w-[70%]">
-        <div className="LocationDetails w-48 h-8 bg-[rgb(68,69,69)] rounded-2xl flex justify-around items-center">
+        <div className="LocationDetails w-[65%] min-h-8 bg-[rgb(68,69,69)] rounded-2xl flex justify-around items-center">
           <img src={locationImg} alt="img" className="w-5 h-5" />
-          <p className="text-[#d6d6d6] h-6 w-36">
+          <p className="text-[#d6d6d6] min-h-6 w-auto">
             {contextcontent.flag && contextcontent.currentWeather.location.name}{" "}
             ,{" "}
             {contextcontent.flag &&
@@ -21,7 +21,7 @@ const CurrentComponent = () => {
           </p>
         </div>
         <div className="flex">
-          <div>
+          <div className="w-[30%]">
             <p className="text-white text-2xl mt-2">
               {contextcontent.flag && contextcontent.dayName}
             </p>

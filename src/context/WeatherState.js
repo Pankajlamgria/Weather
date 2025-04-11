@@ -90,10 +90,17 @@ const WeatherState = (props) => {
         }
       );
       const data = await response.json();
-      setCurrentWeather(data);
-      let date=new Date(data.location.localtime.split(' ')[0]);
-      setDayName(days[date.getDay()]);
-      setflag(true);
+      
+      console.log(data);
+      if(data.error===undefined){
+        setCurrentWeather(data);
+        let date=new Date(data.location.localtime.split(' ')[0]);
+        setDayName(days[date.getDay()]);
+        setflag(true);
+      }
+      else{
+        alert(data.error.message);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -104,65 +111,67 @@ const WeatherState = (props) => {
         headers:{}
       });
       const data=await response.json();
-      if(data !==undefined){
-        getPreviousWeather(location,getPreviousDate(1),1);
-        getPreviousWeather(location,getPreviousDate(2),2);
-        getPreviousWeather(location,getPreviousDate(3),3);
-        getPreviousWeather(location,getPreviousDate(4),4);
-        // console.log(data);
-        // settempChart(data.forecast.forecastday[0].hour);
-        setForecast(data);
-  
-  
-        setChartInfo({
-          series: [
-            {
-              name: "Desktops",
-              data:[data.forecast.forecastday[0].hour[0].temp_c,data.forecast.forecastday[0].hour[3].temp_c,data.forecast.forecastday[0].hour[6].temp_c, data.forecast.forecastday[0].hour[9].temp_c,data.forecast.forecastday[0].hour[12].temp_c, data.forecast.forecastday[0].hour[15].temp_c,data.forecast.forecastday[0].hour[18].temp_c, data.forecast.forecastday[0].hour[21].temp_c,data.forecast.forecastday[0].hour[23].temp_c],
-            }
-          ],
-          options: {
-            tooltip:{
-              enabled:false,
-            },
-            markers:{
-              hover:{
-                size:0
+      if(data.error===undefined){
+        if(data !==undefined){
+          getPreviousWeather(location,getPreviousDate(1),1);
+          getPreviousWeather(location,getPreviousDate(2),2);
+          getPreviousWeather(location,getPreviousDate(3),3);
+          getPreviousWeather(location,getPreviousDate(4),4);
+          // console.log(data);
+          // settempChart(data.forecast.forecastday[0].hour);
+          setForecast(data);
+    
+    
+          setChartInfo({
+            series: [
+              {
+                name: "Desktops",
+                data:[data.forecast.forecastday[0].hour[0].temp_c,data.forecast.forecastday[0].hour[3].temp_c,data.forecast.forecastday[0].hour[6].temp_c, data.forecast.forecastday[0].hour[9].temp_c,data.forecast.forecastday[0].hour[12].temp_c, data.forecast.forecastday[0].hour[15].temp_c,data.forecast.forecastday[0].hour[18].temp_c, data.forecast.forecastday[0].hour[21].temp_c,data.forecast.forecastday[0].hour[23].temp_c],
               }
-            },
-            
-
-            chart: {
-              height: 250,
-              type: 'line',
-              zoom: {
-                enabled: false
+            ],
+            options: {
+              tooltip:{
+                enabled:false,
               },
-              toolbar:{
-                show:false,
+              markers:{
+                hover:{
+                  size:0
+                }
               },
-            },
-            dataLabels: {
-              enabled: true
-            },
-            stroke: {
-              curve: 'straight'
-            },
-            title: {
-              text: 'Temprature',
-              align: 'left'
-            },
-            grid: {
-              row: {
-                colors: ['transparent'],
-                opacity: 1
+              
+  
+              chart: {
+                height: 250,
+                type: 'line',
+                zoom: {
+                  enabled: false
+                },
+                toolbar:{
+                  show:false,
+                },
+              },
+              dataLabels: {
+                enabled: true
+              },
+              stroke: {
+                curve: 'straight'
+              },
+              title: {
+                text: 'Temprature',
+                align: 'left'
+              },
+              grid: {
+                row: {
+                  colors: ['transparent'],
+                  opacity: 1
+                }
+              },
+              xaxis: {
+                categories: ['12AM', '3AM', '6AM', '9PM', '12PM', '3PM', '6PM', '9PM','11PM']
               }
-            },
-            xaxis: {
-              categories: ['12AM', '3AM', '6AM', '9PM', '12PM', '3PM', '6PM', '9PM','11PM']
             }
-          }
-        });
+          });
+        }
       }
 
       setForecastFlag(true);
