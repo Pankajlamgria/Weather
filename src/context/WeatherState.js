@@ -66,7 +66,7 @@ const WeatherState = (props) => {
   }
   const getPreviousWeather=async(location,date,day)=>{
     try{
-      const response=await fetch(`http://api.weatherapi.com/v1/history.json?key=${api}&q=${location}&dt=${date}`,{
+      const response=await fetch(`https://api.weatherapi.com/v1/history.json?key=${api}&q=${location}&dt=${date}`,{
         headers:{}
       });
       const data=await response.json();
@@ -84,7 +84,7 @@ const WeatherState = (props) => {
   const getCurrentWeather = async (location) => {
     try {
       const response = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=${api}&q=${location}&aqi=yes`,
+        `https://api.weatherapi.com/v1/current.json?key=${api}&q=${location}&aqi=yes`,
         {
           headers: {},
         }
@@ -106,7 +106,7 @@ const WeatherState = (props) => {
   };
   const getForecast=async(location,day)=>{
     try{
-      const response=await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${api}&q=${location}&days=${day}&aqi=no&alerts=no`,{
+      const response=await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${api}&q=${location}&days=${day}&aqi=no&alerts=no`,{
         headers:{}
       });
       const data=await response.json();
